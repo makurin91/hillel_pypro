@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+    <style>
+        body {
+            background-image: url('https://www.itl.cat/pngfile/big/74-740948_abstract-background-images-for-powerpoint-white-and-blue.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            max-width: 1920px;
+            margin: 0 auto;
+            padding: 50px;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            font-size: 48px;
+        }
+
+        .product-list {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .product {
+            width: 400px;
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .product img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .product h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .product p {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .product button {
+            background-color: #d8d8d8;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .product button:hover {
+            background-color: #666666;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Products</h1>
+    <div class="product-list"></div>
+</div>
+<script>
+    const products = [
+        {
+            name: 'Product 1',
+            image: 'https://via.placeholder.com/400x300',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel fermentum eros. Integer id nisl ut elit egestas mattis a ut lectus. Duis vel magna at tellus bibendum sodales vitae nec quam.',
+            price: '$19.99'
+        },
+        {
+            name: 'Product 2',
+            image: 'https://via.placeholder.com/400x300',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel fermentum eros. Integer id nisl ut elit egestas mattis a ut lectus. Duis vel magna at tellus bibendum sodales vitae nec quam.',
+            price: '$29.99'
+        },
+        {
+            name: 'Product 3',
+            image: 'https://via.placeholder.com/400x300',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel fermentum eros. Integer id nisl ut elit egestas mattis a ut lectus. Duis vel magna at tellus bibendum sodales vitae nec quam.',
+            price: '$39.99'
+        }
+    ];
+
+    const product_list = document.querySelector('.product-list');
+
+    function createProduct(product) {
+        const product_div = document.createElement('div');
+        product_div.classList.add('product');
+
+        const product_image = document.createElement('img');
+        product_image.src = product.image;
+        product_image.alt = product.name;
+
+        const product_name = document.createElement('h3');
+        product_name.textContent = product.name;
+
+        const product_description = document.createElement('p');
+        product_description.textContent = product.description;
+
+        const product_price = document.createElement('p');
+        product_price.classList.add('price');
+        product_price.textContent = product.price;
+
+        const add_to_cart_button = document.createElement('button');
+        add_to_cart_button.classList.add('add-to-cart');
+        add_to_cart_button.textContent = 'Add to cart';
+
+        product_div.appendChild(product_image);
+        product_div.appendChild(product_name);
+        product_div.appendChild(product_description);
+        product_div.appendChild(product_price);
+        product_div.appendChild(add_to_cart_button);
+
+        return product_div;
+    }
+
+    function displayProducts() {
+        products.forEach((product) => {
+            const product_element = createProduct(product);
+            product_list.appendChild(product_element);
+        });
+    }
+
+    displayProducts();
+</script>
