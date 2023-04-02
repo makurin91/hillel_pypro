@@ -23,7 +23,7 @@ EXAMPLE:
     - Product.objects.create(name='Banan', description='banan desc', sku='123', is_active=False)
 
 HW-7
-python manage.py migrate products --empty -> Create empty migration
+python manage.py makemigrations products --empty -> Create empty migration
 
 EXAMPLE:
 

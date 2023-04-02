@@ -3,7 +3,7 @@ from os import path
 from django.core.validators import MinValueValidator
 from django.db import models
 
-from project.constans import MAX_DIGITS, DECIMAL_PLACES
+from project.constants import MAX_DIGITS, DECIMAL_PLACES
 from project.mixins.models import PKMixin
 
 
@@ -18,7 +18,14 @@ class Category(PKMixin):
         blank=True,
         null=True
     )
-    image = models.ImageField(upload_to=upload_to)
+    image = models.ImageField(
+        upload_to=upload_to,
+        null=True,
+        blank=True
+    )
+
+    def __str__(self):
+        return self.name
 
 
 class Product(PKMixin):
@@ -42,14 +49,5 @@ class Product(PKMixin):
         decimal_places=DECIMAL_PLACES
     )
 
-
-class Discount(models.Model):
-    DISCOUNT_TYPE_CHOICES = [
-        (0, 'money'),
-        (1, 'percent'),
-    ]
-
-    amount = models.PositiveIntegerField(validators=[MinValueValidator(1)])
-    code = models.CharField(max_length=255)
-    is_active = models.BooleanField(default=True)
-    discount_type = models.IntegerField(choices=DISCOUNT_TYPE_CHOICES)
+    def __str__(self):
+        return f"{self.name} - {self.price}"
